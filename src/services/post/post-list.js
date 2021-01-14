@@ -30,6 +30,7 @@ export default {
                     value: "operation",
                 },
             ],
+            showList: []
         };
     },
     mounted() {
@@ -37,23 +38,22 @@ export default {
             .get("/post/list")
             .then(response => {
                 this.$store.commit('setPostList', response.data);
-                this.$store.commit('setShowList', this.$store.state.postList);
+                this.showList = this.$store.state.postList;
             });
     },
     computed: {
-        ...mapGetters(["isLoggedIn", "showList"]),
+        ...mapGetters(["isLoggedIn"]),
         headers() {
             if (!this.isLoggedIn) {
                 return this.headerList.slice(0, this.headerList.length - 1);
             } else {
                 return this.headerList;
             }
-        },
-        
+        },  
     },
     methods: {
         filterPosts() {
-            this.$store.state.showList = this.$store.state.postList.filter((post) => {
+            this.showList = this.$store.state.postList.filter((post) => {
                 return (
                     post.title.includes(this.keyword) ||
                     post.description.includes(this.keyword) ||

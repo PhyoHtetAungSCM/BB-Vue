@@ -11,9 +11,8 @@ export default new Vuex.Store({
     state: {
         authID: '',
         user: null,
+        userList: [],
         postList: [],
-        showList: [],
-        tmpList: [],
     },
     mutations: {
         setUserData(state, data) {
@@ -22,14 +21,14 @@ export default new Vuex.Store({
         setPostData(state, data) {
             state.postList.push({ title: data.title, description: data.description })
         },
+        setUserList(state, data) {
+            state.userList = data
+        },
+        deleteUserList(state, index) {
+            state.userList.splice(index, 1)
+        },
         setPostList(state, data) {
             state.postList = data
-        },
-        setShowList(state, data) {
-            state.showList = data
-        },
-        setTmpList(state, data) {
-            state.tmpList = data
         },
         deletePostList(state, index) {
             state.postList.splice(index, 1)
@@ -61,7 +60,7 @@ export default new Vuex.Store({
                 title: context.title,
                 description: context.description
             }).then(({ data }) => {
-                commit("setTmpList", data);
+                commit("setPostList", data);
             });
         },
         createPost({ commit }, context) {
@@ -69,7 +68,7 @@ export default new Vuex.Store({
                 authID: this.state.authID,
                 ...context
             }).then(({ data }) => {
-                commit("setPostData", data);
+                commit("setPostList", data);
             });
         },
         updatePostConfirm({ commit }, context) {
@@ -78,7 +77,7 @@ export default new Vuex.Store({
                 title: context.title,
                 description: context.description
             }).then(({ data }) => {
-                commit("setTmpList", data);
+                commit("setPostList", data);
             });
         },
         updatePost({ commit }, context) {
@@ -86,7 +85,7 @@ export default new Vuex.Store({
                 authID: this.state.authID,
                 ...context
             }).then(({ data }) => {
-                commit("updatePostList", data);
+                commit("setPostList", data);
             });
         },
     },
@@ -113,9 +112,9 @@ export default new Vuex.Store({
                 return state.showList;
             }
         },
-        tmpList: (state) => {
-            if (state.tmpList) {
-                return state.tmpList;
+        postList: (state) => {
+            if (state.postList) {
+                return state.postList;
             }
         }
     },

@@ -8,6 +8,8 @@
                         <span @click="$router.push({ name: 'post-list' })">{{ title }}</span>
                     </v-toolbar-title>
                     <div class="route-links">
+                        <!-- <span @click="$router.push({ name: 'post-list' })">Users</span>
+                        <span @click="$router.push({ name: 'post-list' })">Posts</span> -->
                     </div>
                     <v-spacer></v-spacer>
                     <div class="route-links">

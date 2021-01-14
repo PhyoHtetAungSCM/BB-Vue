@@ -10,7 +10,7 @@
                         <label for="title" class="font-bold">Title:</label>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
-                        <span>{{ tmpList.title }}</span>
+                        <span>{{ postList.title }}</span>
                     </v-col>
                 </v-row>
                 <v-row>
@@ -18,7 +18,7 @@
                         <label for="description" class="font-bold">Description:</label>
                     </v-col>
                     <v-col cols="12" sm="6" md="8">
-                        <span>{{ tmpList.description }}</span>
+                        <span>{{ postList.description }}</span>
                     </v-col>
                 </v-row>
             </v-container>

@@ -2,14 +2,14 @@ import { mapGetters } from "vuex";
 
 export default {
 	computed: {
-    ...mapGetters(["tmpList"]),
+    ...mapGetters(["postList"]),
   },
   methods: {
     updatePost() {
       this.$store
           .dispatch("updatePost", {
             id: this.$route.params.id,
-            ...this.$store.state.tmpList
+            ...this.$store.state.postList
           })
           .then(() => {
               this.error = "";
