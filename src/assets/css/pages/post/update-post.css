@@ -1,0 +1,21 @@
+.post-title {
+  background: #1976d2;
+  color: #ffffff;
+}
+
+.post-input {
+  margin-bottom: 10px;
+}
+
+.post-create-action {
+  margin: 0px 7px 7px 7px;
+}
+
+.error-box {
+  border-color: red;
+}
+
+.error-message{
+  color: red !important;
+  font-size: 12px !important;
+}
