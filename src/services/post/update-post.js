@@ -14,7 +14,7 @@ export default {
 				post.id == this.id
 			);
 		}),
-		this.title = this.updatePost[0].title,
+		this.title = this.tupdatePos[0].title,
 		this.description = this.updatePost[0].description
 	},
 	methods: {
