@@ -1,0 +1,19 @@
+.filter-bar {
+  padding: 0px 10px;
+}
+
+.user-list-btn {
+  margin: auto;
+}
+
+.user-list-btn:hover {
+text-decoration: none;
+}
+
+.operation-btn {
+  margin: 5px;
+}
+
+.detail-row {
+height: 30px;
+}

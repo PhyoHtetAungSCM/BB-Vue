@@ -13,6 +13,7 @@ export default new Vuex.Store({
         user: null,
         userList: [],
         postList: [],
+        url: null,
     },
     mutations: {
         setUserData(state, data) {
@@ -24,24 +25,20 @@ export default new Vuex.Store({
         setUserList(state, data) {
             state.userList = data
         },
-        deleteUserList(state, index) {
+        deleteUserList(state, id) {
+            const index = state.userList.findIndex(user => user.id == id);
             state.userList.splice(index, 1)
         },
         setPostList(state, data) {
             state.postList = data
         },
-        deletePostList(state, index) {
+        deletePostList(state, id) {
+            const index = state.postList.findIndex(post => post.id == id);
             state.postList.splice(index, 1)
-        },
-        updatePostList(state, data) {
-            const index = state.postList.findIndex(post => post.id == data.id);
-            state.postList.splice(index, 1, {
-                'title': data.title,
-                'description': data.description
-            });
         }
     },
     actions: {
+        /** Authentication */
         login({ commit }, credentials) {
             return axios.post("/auth/login", {
                 email: credentials.email,
@@ -55,6 +52,34 @@ export default new Vuex.Store({
                 commit("setUserData", null);
             });
         },
+
+        /** User Actions */
+        createUserConfirm({ commit }, context) {
+            return axios.post("/user/create-confirm", {
+                ...context
+            }).then(({ data }) => {
+                commit("setUserList", data);
+            });
+        },
+        createUser({ commit }, context) {
+            console.log(typeof(context.password));
+            return axios.post("/user/create", {
+                authID: this.state.authID,
+                ...context
+            }).then(({ data }) => {
+                commit("setUserList", data);
+            });
+        },
+        deleteUser({ commit }, context) {
+            return axios.post("/user/delete", {
+                authID: this.state.authID,
+                userID: context.userID
+            }).then(() => {
+                commit('deleteUserList', context.userID);
+            })
+        },
+
+        /** Post Actions */
         createPostConfirm({ commit }, context) {
             return axios.post("/post/create-confirm", {
                 title: context.title,
@@ -88,6 +113,14 @@ export default new Vuex.Store({
                 commit("setPostList", data);
             });
         },
+        deletePost({ commit }, context) {
+            return axios.post("/post/delete", {
+                authID: this.state.authID,
+                postID: context.postID
+            }).then(() => {
+                commit('deletePostList', context.postID);
+            })
+        }
     },
     getters: {
         isLoggedIn: (state) => !!state.user,
@@ -115,6 +148,11 @@ export default new Vuex.Store({
         postList: (state) => {
             if (state.postList) {
                 return state.postList;
+            }
+        },
+        userList: (state) => {
+            if (state.userList) {
+                return state.userList;
             }
         }
     },

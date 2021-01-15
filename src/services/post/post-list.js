@@ -62,14 +62,17 @@ export default {
             });
         },
         deletePost(id) {
-            this.$axios.delete("/post/delete/" + id)
-                .then(() => {
-                    const index = this.$store.state.postList.findIndex(post => post.id == id);
-                    this.$store.commit('deletePostList', index)
+            this.$store
+                .dispatch("deletePost", {
+                    postID: id
                 })
-                .catch((err) => {
+                .then(() => {
+                    this.error = "";
+                })
+                .catch(err => {
+                    this.error = err.response.data.errors;
                     console.log(err);
                 });
-        }
+        },
     }
 };

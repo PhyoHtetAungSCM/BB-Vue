@@ -23,6 +23,7 @@
                   outlined 
                   rows="4" 
                   :value="description" 
+                  v-model="description"
                   label="Description" 
                   hide-details="auto"
                 >

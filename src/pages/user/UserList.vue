@@ -9,7 +9,7 @@
                     <v-text-field label="Search keyword" hide-details="auto" v-model='keyword'></v-text-field>
                 </v-col>
                 <v-btn class="post-list-btn mr-4" color="primary" @click="filterUsers">Filter</v-btn>
-                <v-btn class="post-list-btn mr-4" color="primary" @click="$router.push({ name: 'create-post' })">Create</v-btn>
+                <v-btn class="post-list-btn mr-4" color="primary" @click="$router.push({ name: 'create-user' })">Create</v-btn>
             </v-row>
         </v-form>
     </v-card-title>
@@ -21,7 +21,7 @@
             <template v-slot:[`item.operation`] = "{ item }">
                 <v-row>
                     <div class="operation-btn">
-                        <v-btn color="primary" class="post-list-btn">Edit</v-btn>
+                        <v-btn color="primary" class="post-list-btn" @click="$router.push({ name: 'update-user', params: { id: item.id } })">Edit</v-btn>
                     </div>
                     <div class="operation-btn">
                         <v-btn color="error" class="post-list-btn" @click="deleteUser(item.id)">Delete</v-btn>

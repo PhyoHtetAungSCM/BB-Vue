@@ -62,18 +62,17 @@ export default {
             });
         },
         deleteUser(id) {
-            this.$axios.delete("/user/delete", {
-				data: {
-				userID: id,
-				authID: this.$store.state.authID
-			}
-            }).then(( { data } ) => {
-				console.log(data);
-                const index = this.$store.state.userList.findIndex(user => user.id == id);
-                this.$store.commit('deleteUserList', index);
-            }).catch((err) => {
-                console.log(err);
-            });
-        }
+            this.$store
+                .dispatch("deleteUser", {
+                    userID: id
+                })
+                .then(() => {
+                    this.error = "";
+                })
+                .catch(err => {
+                    this.error = err.response.data.errors;
+                    console.log(err);
+                });
+        },
     }
 };
