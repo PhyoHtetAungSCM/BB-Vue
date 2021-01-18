@@ -1,47 +1,49 @@
 export default {
 	data() {
 		return {
-			name: "",
-			email: "",
-			password: "",
-			password_confirmation: "",
-
-			types: ['Admin', 'User'],
-			selectedType: "",
-			
-			profile: null,
-			preview_url: null,
+			types: [
+				{ value: 0, text: "Admin" },
+				{ value: 1, text: "User" }
+			],
+			userInfo: {
+				name: "",
+				email: "",
+				password: "",
+				password_confirmation: "",
+				type: "",
+				profile: '',
+			},
+			selectedType: null,
+			previewProfile: "",
 			error: "",
 		};
-    },
+	},
 	methods: {
 		setSelected(value) {
-			this.selectedType = value;
+			this.userInfo.type = value;
 		},
-		previewImage(e) {
-			if (e) {
-				this.$store.state.url= URL.createObjectURL(this.profile);
-				this.preview_url = this.$store.state.url;
+		imageChanged(e) {
+			/** Preview Image */
+			this.previewProfile = URL.createObjectURL(e.target.files[0]);
+			this.$store.state.confirmProfile = URL.createObjectURL(e.target.files[0]);
+			/** Even.Target.Result */
+			let fileReader = new FileReader();
+			fileReader.readAsDataURL(e.target.files[0]);
+			fileReader.onload = (e) => {
+				this.userInfo.profile = e.target.result;
 			}
 		},
-        createUserConfirm() {
-            this.$store
-                .dispatch("createUserConfirm", {
-                    name: this.name,
-					email: this.email,
-					password: this.password,
-					password_confirmation: this.password_confirmation,
-					type: this.selectedType == "Admin" ? 0 : 1,
-					profile_url: this.$store.state.url,
-                })
-                .then(() => {
-                    this.error = "";
-                    this.$router.push({ name: "create-user-confirm" });
-                })
-                .catch(err => {
-                    this.error = err.response.data.errors;
+		createUserConfirm() {
+			this.$store
+				.dispatch("createUserConfirm", this.userInfo)
+				.then(() => {
+					this.error = "";
+					this.$router.push({ name: "create-user-confirm" });
+				})
+				.catch(err => {
+					this.error = err.response.data.errors;
 					console.log(this.error);
-                });
-        },
+				});
+			},
     }
 };

@@ -7,17 +7,17 @@ export default {
   methods: {
     updatePost() {
       this.$store
-          .dispatch("updatePost", {
-            id: this.$route.params.id,
-            ...this.$store.state.postList
-          })
-          .then(() => {
-              this.error = "";
-              this.$router.push({ name: "post-list" });
-          })
-          .catch(err => {
-            console.log(err);
-          });
+        .dispatch("updatePost", {
+          id: this.$route.params.id,
+          ...this.$store.state.postList
+        })
+        .then(() => {
+          this.error = "";
+          this.$router.push({ name: "post-list" });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };

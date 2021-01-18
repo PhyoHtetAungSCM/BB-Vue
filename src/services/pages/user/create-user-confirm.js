@@ -1,27 +1,23 @@
 import { mapGetters } from "vuex";
 
 export default {
-  data() {
-    return {
-      confirm_url: this.$store.state.url
-    }
+  mounted() {
+    this.$store.state.userList['authID'] = this.$store.state.authID;
   },
 	computed: {
-    ...mapGetters(["userList"]),
+    ...mapGetters(["userList", "confirmProfile"]),
   },
   methods: {
     createUser() {
       this.$store
-          .dispatch("createUser", {
-            ...this.$store.state.userList
-          })
-          .then(() => {
-              this.error = "";
-              this.$router.push({ name: "user-list" });
-          })
-          .catch(err => {
-            console.log(err);
-          });
+				.dispatch("createUser", this.$store.state.userList)
+				.then(() => {
+					this.error = "";
+					this.$router.push({ name: "user-list" });
+				})
+				.catch(err => {
+					console.log(err);
+				});
     }
   }
 };

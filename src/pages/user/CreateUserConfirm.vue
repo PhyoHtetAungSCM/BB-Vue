@@ -5,7 +5,7 @@
         </v-card-title>
         <v-form ref="form" @submit.prevent="createUser">
             <v-container>
-              <img :src="confirm_url" style="width: 100px; height: 100px;">
+              <img :src="confirmProfile" style="width: 100px; height: 100px;">
                 <v-row>
                     <v-col cols="12" sm="6" md="4">
                         <label for="name" class="font-bold">Name:</label>
@@ -42,7 +42,7 @@
             <v-card-actions>
                 <div class="user-create-action">
                     <v-spacer></v-spacer>
-                    <v-btn type="submit" color="primary">Create</v-btn>
+                    <v-btn type="submit" large color="primary">Create</v-btn>
                 </div>
             </v-card-actions>
         </v-form>

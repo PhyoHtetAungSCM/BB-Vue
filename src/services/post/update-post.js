@@ -1,38 +1,34 @@
 export default {
 	data() {
 		return {
-			id: this.$route.params.id,
-			title: '',
-			description: '',
-			updatePost: '',
+			routeID: this.$route.params.id,
+			postInfo: this.$store.state.postList,
 			error: "",
 		};
 	},
 	mounted() {
-		this.updatePost = this.$store.state.postList.filter((post) => {
-			return (
-				post.id == this.id
-			);
-		}),
-		this.title = this.tupdatePos[0].title,
-		this.description = this.updatePost[0].description
+		if(this.postInfo.length > 1) {
+			const updatePost = this.postInfo.filter((post) => {
+				return (
+					post.id == this.routeID
+				);
+			});
+			this.postInfo = updatePost[0];
+			this.postInfo.profile = null;
+		}
 	},
 	methods: {
-        updatePostConfirm() {
-            this.$store
-                .dispatch("updatePostConfirm", {
-										id: this.id,
-                    title: this.title,
-                    description: this.description
-                })
-                .then(() => {
-                    this.error = "";
-                    this.$router.push({ name: "update-post-confirm" });
-                })
-                .catch(err => {
-                    this.error = err.response.data.errors;
-                    console.log(err);
-                });
-        },
-    }
+		updatePostConfirm() {
+			this.$store
+				.dispatch("updatePostConfirm", this.postInfo)
+				.then(() => {
+					this.error = "";
+					this.$router.push({ name: "update-post-confirm" });
+				})
+				.catch(err => {
+					this.error = err.response.data.errors;
+					console.log(err);
+				});
+		},
+	}
 };
