@@ -1,15 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import VueExcelXlsx from "vue-excel-xlsx";
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
+Vue.use(VueExcelXlsx);
 
 axios.defaults.baseURL = process.env.VUE_APP_SERVER;
 
 export default new Vuex.Store({
 	state: {
 		authID: '',
+		authType: '',
 		confirmProfile: '',
 		user: null,
 		userList: [],
@@ -47,34 +50,30 @@ export default new Vuex.Store({
 				commit("setUserData", data);
 			});
 		},
-		logout({ commit }, credentials) {
-			return axios.post("/auth/logout", credentials).then(() => {
+		logout({ commit }) {
+			return axios.post("/auth/logout").then((response) => {
+				console.log(response);
 				commit("setUserData", null);
 			});
 		},
 		/** User Actions */
 		createUserConfirm({ commit }, context) {
-			console.log(context.type);
 			return axios.post("/user/create-confirm", context).then(({ data }) => {
-				console.log(data);
 				commit("setUserList", data);
 			});
 		},
 		createUser({ commit }, context) {
 			return axios.post("/user/create", context).then(({ data }) => {
-				console.log(data);
 				commit("setUserList", data);
 			});
 		},
 		updateUserConfirm({ commit }, context) {
 			return axios.post("/user/update-confirm", context).then(({ data }) => {
-				console.log(data);
 				commit("setUserList", data);
 			});
 		},
 		updateUser({ commit }, context) {
 			return axios.post("/user/update", context).then(({ data }) => {
-				console.log(data);
 				commit("setUserList", data);
 			});
 		},
@@ -131,12 +130,7 @@ export default new Vuex.Store({
 	},
 	getters: {
 		isLoggedIn: (state) => !!state.user,
-		userType: (state) => {
-			if (state.user && state.user.data.type) {
-				return state.user.data.type;
-			}
-			return -1;
-		},
+		/** User Getters */
 		userId: (state) => {
 			if (state.user && state.user.data.id) {
 				return state.user.data.id;
@@ -147,14 +141,9 @@ export default new Vuex.Store({
 				return state.user.data.name;
 			}
 		},
-		showList: (state) => {
-			if (state.showList) {
-				return state.showList;
-			}
-		},
-		postList: (state) => {
-			if (state.postList) {
-				return state.postList;
+		userType: (state) => {
+			if (state.user && state.user.data.type) {
+				return state.user.data.type;
 			}
 		},
 		userList: (state) => {
@@ -166,7 +155,14 @@ export default new Vuex.Store({
 			if (state.confirmProfile) {
 				return state.confirmProfile;
 			}
-		}
+		},
+		
+		/** Post Getters */
+		postList: (state) => {
+			if (state.postList) {
+				return state.postList;
+			}
+		},
 	},
 	plugins: [createPersistedState()],
 });

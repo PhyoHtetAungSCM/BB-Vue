@@ -17,92 +17,68 @@
 	</v-card-title>
 	<v-container>
 		<v-data-table :headers="headers" :items="showList">
-
-
-
-
-
-	<template v-slot:[`item.title`]="{ item }">
-		<v-dialog transition="dialog-top-transition" max-width="600">
-			<template v-slot:activator="{ on, attrs }">
-				<a color="primary" 
-				v-if="item.title" 
-				:key="item.id" 
-				v-bind="attrs" 
-				v-on="on"
-				@click="getPostDetail(item.id)"
-				>{{ item.title }}</a>
+			<template v-slot:[`item.title`]="{ item }">
+				<v-dialog transition="dialog-top-transition" max-width="600">
+					<template v-slot:activator="{ on, attrs }">
+						<a color="primary" 
+						v-if="item.title" 
+						:key="item.id" 
+						v-bind="attrs" 
+						v-on="on"
+						@click="getPostDetail(item.id)"
+						>{{ item.title }}</a>
+					</template>
+					<template v-slot:default="dialog">
+						<v-card>
+							<v-toolbar color="primary" dark>Post Detail</v-toolbar>
+							<v-container>
+								<v-row>
+									<v-col cols="12" sm="6" md="4">
+										<label class="font-bold">Title:</label>
+									</v-col>
+									<v-col cols="12" sm="6" md="8">
+										<span>{{ postDetail.title }}</span>
+									</v-col>
+								</v-row>
+								<v-row>
+									<v-col cols="12" sm="6" md="4">
+										<label class="font-bold">Description:</label>
+									</v-col>
+									<v-col cols="12" sm="6" md="8">
+										<span>{{ postDetail.description }}</span>
+									</v-col>
+								</v-row>
+								<v-row>
+									<v-col cols="12" sm="6" md="4">
+										<label class="font-bold">Posted User:</label>
+									</v-col>
+									<v-col cols="12" sm="6" md="8">
+										<span>{{ postDetail.user.name }}</span>
+									</v-col>
+								</v-row>
+							</v-container>
+							<!-- card action -->
+							<v-card-actions class="justify-end">
+								<v-btn
+									text
+									@click="dialog.value = false"
+								>Close</v-btn>
+							</v-card-actions>
+						</v-card>
+					</template>
+				</v-dialog>
 			</template>
-			<template v-slot:default>
-				<v-card>
-					<v-toolbar color="primary" dark>Post Detail</v-toolbar>
-					<v-container>
-				<v-row>
-					<v-col cols="12" sm="6" md="4">
-						<label for="title" class="font-bold">Title:</label>
-					</v-col>
-					<v-col cols="12" sm="6" md="8">
-						<span>{{ postDetail.title }}</span>
-					</v-col>
-				</v-row>
-				<v-row>
-					<v-col cols="12" sm="6" md="4">
-						<label for="description" class="font-bold">Description:</label>
-					</v-col>
-					<v-col cols="12" sm="6" md="8">
-						<span>{{ postDetail.description }}</span>
-					</v-col>
-				</v-row>
-			</v-container>
-				</v-card>
-			</template>
-		</v-dialog>
-	</template>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			<!-- <template v-slot:[`item.title`]="{ item }">
-				<a v-if="item.title" :key="item.id">{{ item.title }}</a>
-			</template> -->
 			<template v-slot:[`item.operation`] = "{ item }">
-				<v-row>
-					<div class="operation-btn">
-						<v-btn color="primary" class="post-list-btn" @click="$router.push({ name: 'update-post', params: { id: item.id } })">Edit</v-btn>
-					</div>
-					<div class="operation-btn">
-						<v-btn color="error" class="post-list-btn" @click="deletePost(item.id)">Delete</v-btn>
-					</div>
-				</v-row>
+				<template v-if="item.create_user_id == userId || userType == 0">
+					<v-row>
+						<div class="operation-btn">
+							<v-btn color="primary" class="post-list-btn" @click="$router.push({ name: 'update-post', params: { id: item.id } })">Edit</v-btn>
+						</div>
+						<div class="operation-btn">
+							<v-btn color="error" class="post-list-btn" @click="deletePost(item.id)">Delete</v-btn>
+						</div>
+					</v-row>
+				</template>
 			</template>
 		</v-data-table>
 	</v-container>

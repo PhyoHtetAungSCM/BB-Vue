@@ -31,7 +31,8 @@ export default {
 				},
 			],
 			showList: [],
-			postDetail: ""
+			postDetail: [],
+			userType: this.$store.state.authType
 		};
 	},
     mounted() {
@@ -43,7 +44,7 @@ export default {
 				});
     },
     computed: {
-			...mapGetters(["isLoggedIn"]),
+			...mapGetters(["isLoggedIn", "userId"]),
 			headers() {
 				if (!this.isLoggedIn) {
 					return this.headerList.slice(0, this.headerList.length - 1);

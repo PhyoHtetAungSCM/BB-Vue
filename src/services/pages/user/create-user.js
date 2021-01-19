@@ -42,8 +42,16 @@ export default {
 				})
 				.catch(err => {
 					this.error = err.response.data.errors;
-					console.log(this.error);
+					console.log(err);
 				});
-			},
-    }
+		},
+		removeUserInputs() {
+			this.name = "",
+      this.email = "",
+			this.password = "",
+			this.password_confirmation = "",
+			this.type = "",
+			this.profile = ""
+		}
+  }
 };

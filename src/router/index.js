@@ -4,12 +4,14 @@ import VueRouter from "vue-router";
 /** Authentication Import */
 import Login from "../pages/user/Login";
 
-/** Post Import */
+/** User Import */
 import UserList from "../pages/user/UserList";
 import CreateUser from "../pages/user/CreateUser";
 import CreateUserConfirm from "../pages/user/CreateUserConfirm";
+import UserProfile from "../pages/user/UserProfile";
 import UpdateUser from "../pages/user/UpdateUser";
 import UpdateUserConfirm from "../pages/user/UpdateUserConfirm";
+import ChangePassword from "../pages/user/ChangePassword";
 
 /** Post Import */
 import PostList from "../pages/post/PostList";
@@ -54,7 +56,12 @@ const routes = [
         component: CreateUserConfirm,
     },
     {
-        path: "/user/update/:id?",
+        path: "/user/profile",
+        name: 'user-profile',
+        component: UserProfile,
+    },
+    {
+        path: "/user/update",
         name: "update-user",
         component: UpdateUser,
     },
@@ -62,6 +69,11 @@ const routes = [
         path: "/user/update-confirm",
         name: 'update-user-confirm',
         component: UpdateUserConfirm,
+    },
+    {
+        path: "/user/change-password",
+        name: 'change-password',
+        component: ChangePassword,
     },
 
     /** Post List Route */

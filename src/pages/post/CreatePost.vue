@@ -17,7 +17,8 @@
 		<v-card-actions>
 			<div class="post-create-action">
 				<v-spacer></v-spacer>
-				<v-btn type="submit" large color="primary">Confirm</v-btn>
+				<v-btn type="submit" large color="primary" style="margin-right: 10px;">Confirm</v-btn>
+				<v-btn large color="primary" style="margin-right: 10px;" @click="removePostInputs">Clear</v-btn>
 			</div>
 		</v-card-actions>
 	</v-form>

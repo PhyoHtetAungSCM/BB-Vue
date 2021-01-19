@@ -21,6 +21,10 @@ export default {
 						this.error = err.response.data.errors;
 						console.log(err);
 					});
-			},
+		},
+		removePostInputs() {
+			this.title = "",
+			this.description = ""
+		}
 	}
 };

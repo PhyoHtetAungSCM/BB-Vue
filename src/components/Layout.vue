@@ -5,11 +5,11 @@
 					<v-container>
 						<v-row>
 							<v-toolbar-title class="title">
-									<span @click="$router.push({ name: 'post-list' })">{{ title }}</span>
+									<span @click="$router.push({ name: 'post-list' })" style="padding: 0 15px;">{{ title }}</span>
 							</v-toolbar-title>
 							<div class="route-links">
-									<span @click="$router.push({ name: 'user-list' })">Users</span>
-									<!-- <span @click="$router.push({ name: 'post-list' })">Posts</span> -->
+									<span @click="$router.push({ name: 'user-list' })" style="padding: 0 15px; cursor: pointer">Users</span>
+									<span @click="$router.push({ name: 'post-list' })" style="padding: 0 15px; cursor: pointer">Posts</span>
 							</div>
 							<v-spacer></v-spacer>
 							<div class="route-links">
@@ -21,10 +21,10 @@
 										</v-btn>
 									</template>
 									<v-list>
-										<v-list-item @click="showProfile()">
+										<v-list-item @click="showProfile">
 											<v-list-item-title>Profile</v-list-item-title>
 										</v-list-item>
-										<v-list-item @click="logout()">
+										<v-list-item @click="logout">
 											<v-list-item-title>Logout</v-list-item-title>
 										</v-list-item>
 									</v-list>

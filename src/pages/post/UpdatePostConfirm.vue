@@ -25,7 +25,8 @@
             <v-card-actions>
                 <div class="post-create-action">
                     <v-spacer></v-spacer>
-                    <v-btn type="submit" large color="primary">Update</v-btn>
+                    <v-btn type="submit" large color="primary" style="margin-right: 10px;">Update</v-btn>
+                    <v-btn large color="primary" style="margin-right: 10px;" @click="$router.back()">Cancel</v-btn>
                 </div>
             </v-card-actions>
         </v-form>

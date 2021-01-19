@@ -1,7 +1,6 @@
 export default {
 	data() {
 		return {
-			routeID: this.$route.params.id,
 			types: [
 				{ value: 0, text: "Admin" },
 				{ value: 1, text: "User" }
@@ -15,21 +14,8 @@ export default {
 	mounted() {
 		/** Empty createObjectURL */
 		this.$store.state.confirmProfile = '';
-
-		/** 
-		 * 	1) Filter to get related data
-		 * 	2) If statement -> to prevent data loss when page is refreshed
-		 */
-		if(this.userInfo.length > 1) {
-			const updateUser = this.userInfo.filter((user) => {
-				return (
-					user.id == this.routeID
-				);
-			});
-			this.userInfo = updateUser[0];
-			this.selectedType = updateUser[0].type;
-			this.userInfo.profile = null;
-		}
+		this.selectedType = this.userInfo.type;
+		this.userInfo.profile = null;
 	},
 	methods: {
 		setSelected(value) {

@@ -19,6 +19,7 @@ export default {
             this.$store
                 .dispatch("logout")
                 .then(() => {
+                    this.error = "",
                     this.$router.push({ name: "login" });
                 })
                 .catch((err) => {
@@ -30,7 +31,7 @@ export default {
          * @returns void
          */
         showProfile() {
-            // TODO: do something
+            this.$router.push({ name: 'user-profile' });
         },
     },
 };

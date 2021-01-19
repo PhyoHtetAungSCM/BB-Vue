@@ -29,7 +29,9 @@ export default {
 					value: "operation",
 				},
 			],
-			showList: []
+			showList: [],
+			userDetail: [],
+			userType: this.$store.state.authType
 		};
 	},
 	mounted() {
@@ -39,7 +41,6 @@ export default {
 				this.$store.commit('setUserList', response.data);
 				this.showList = this.$store.state.userList;
 			});
-		console.log(this.$store.state.userList);
 	},
 	computed: {
 		...mapGetters(["isLoggedIn"]),
@@ -52,6 +53,14 @@ export default {
 		},  
 	},
 	methods: {
+		getUserDetail(id) {
+			const userDetail = this.showList.filter((user) => {
+				return (
+					user.id == id
+				);
+			});
+			this.userDetail = userDetail[0];
+		},
 		filterUsers() {
 			this.showList = this.$store.state.userList.filter((user) => {
 				return (
@@ -60,15 +69,6 @@ export default {
 					user.user.name.includes(this.keyword)
 				);
 			});
-		},
-		getUpdateUser(id) {
-			const updateUser = this.$store.state.userList.filter((user) => {
-				return (
-					user.id == id
-				);
-			});
-			this.$store.state.userList = updateUser[0];
-			this.$router.push({ name: 'update-user' });
 		},
 		deleteUser(id) {
 			this.$store

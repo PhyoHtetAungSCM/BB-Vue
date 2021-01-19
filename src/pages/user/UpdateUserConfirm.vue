@@ -28,7 +28,7 @@
                         <label for="type" class="font-bold">Type:</label>
                     </v-col>
                     <v-col cols="12" sm="6" md="8">
-                        <span>{{ userList.type }}</span>
+                        <span>{{ userList.type == 0 ? "Admin" : "User" }}</span>
                     </v-col>
                 </v-row>
             </v-container>

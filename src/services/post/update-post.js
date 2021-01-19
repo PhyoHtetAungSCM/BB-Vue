@@ -30,5 +30,9 @@ export default {
 					console.log(err);
 				});
 		},
+		removePostInputs() {
+			this.postInfo.title = "",
+			this.postInfo.description = ""
+		}
 	}
 };
