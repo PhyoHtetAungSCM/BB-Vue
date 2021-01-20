@@ -3,6 +3,10 @@
   color: #ffffff;
 }
 
+.profile-operation {
+  margin-right: 10px;
+}
+
 .user-create-action {
   margin: 0px 7px 7px 7px;
 }

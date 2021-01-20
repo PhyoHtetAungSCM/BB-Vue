@@ -1,17 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import VueExcelXlsx from "vue-excel-xlsx";
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
-Vue.use(VueExcelXlsx);
 
 axios.defaults.baseURL = process.env.VUE_APP_SERVER;
 
 export default new Vuex.Store({
 	state: {
-		authID: '',
 		authType: '',
 		confirmProfile: '',
 		user: null,
@@ -22,8 +19,8 @@ export default new Vuex.Store({
 		setUserData(state, data) {
 			state.user = data;
 		},
-		setPostData(state, data) {
-			state.postList.push({ title: data.title, description: data.description })
+		setUserName(state, name) {
+			state.user.data.name = name;
 		},
 		setUserList(state, data) {
 			state.userList = data
@@ -38,7 +35,7 @@ export default new Vuex.Store({
 		deletePostList(state, id) {
 			const index = state.postList.findIndex(post => post.id == id);
 			state.postList.splice(index, 1)
-		}
+		},
 	},
 	actions: {
 		/** Authentication */
@@ -51,8 +48,7 @@ export default new Vuex.Store({
 			});
 		},
 		logout({ commit }) {
-			return axios.post("/auth/logout").then((response) => {
-				console.log(response);
+			return axios.post("/auth/logout").then(() => {
 				commit("setUserData", null);
 			});
 		},
@@ -75,55 +71,37 @@ export default new Vuex.Store({
 		updateUser({ commit }, context) {
 			return axios.post("/user/update", context).then(({ data }) => {
 				commit("setUserList", data);
+				commit("setUserName", context.name);
 			});
 		},
-		deleteUser({ commit }, context) {
-			return axios.post("/user/delete", {
-				authID: this.state.authID,
-				userID: context.userID
-			}).then(() => {
-				commit('deleteUserList', context.userID);
+		deleteUser({ commit }, id) {
+			return axios.delete("/user/delete/" + id).then(() => {
+				commit('deleteUserList', id);
 			})
 		},
 		/** Post Actions */
 		createPostConfirm({ commit }, context) {
-			return axios.post("/post/create-confirm", {
-				title: context.title,
-				description: context.description
-			}).then(({ data }) => {
+			return axios.post("/post/create-confirm", context).then(({ data }) => {
 				commit("setPostList", data);
 			});
 		},
 		createPost({ commit }, context) {
-			return axios.post("/post/create", {
-				authID: this.state.authID,
-				...context
-			}).then(({ data }) => {
+			return axios.post("/post/create", context).then(({ data }) => {
 				commit("setPostList", data);
 			});
 		},
 		updatePostConfirm({ commit }, context) {
-			return axios.post("/post/update-confirm", {
-				id: context.id,
-				title: context.title,
-				description: context.description
-			}).then(({ data }) => {
+			return axios.post("/post/update-confirm", context).then(({ data }) => {
 				commit("setPostList", data);
 			});
 		},
 		updatePost({ commit }, context) {
-			return axios.post("/post/update", {
-				authID: this.state.authID,
-				...context
-			}).then(({ data }) => {
+			return axios.post("/post/update", context).then(({ data }) => {
 				commit("setPostList", data);
 			});
 		},
 		deletePost({ commit }, id) {
-			return axios.post("/post/delete", {
-				authID: this.state.authID,
-				postID: id
-			}).then(() => {
+			return axios.delete("/post/delete/" + id).then(() => {
 				commit('deletePostList', id);
 			})
 		}

@@ -30,12 +30,20 @@
 				</v-textarea>
 				<span v-if="error && error.description" class="error-message">{{ error.description[0] }}</span>
 			</div>
+			<div class="post-input">
+				<v-checkbox
+					:value="postInfo.status"
+					v-model="postInfo.status"
+					:label="`Status: ${postInfo.status == 1 ? 'Active' : 'Inactive'}`"
+					@change="changeStatus"
+				></v-checkbox>
+			</div>
 		</v-card-text>
 		<v-card-actions>
 			<div class="post-create-action">
 				<v-spacer></v-spacer>
-				<v-btn type="submit" large color="primary" style="margin-right: 10px;">Confirm</v-btn>
-				<v-btn large color="primary" style="margin-right: 10px;" @click="removePostInputs">Clear</v-btn>
+				<v-btn type="submit" large color="primary" class="action-btn">Confirm</v-btn>
+				<v-btn large color="primary" class="action-btn" @click="removePostInputs">Clear</v-btn>
 			</div>
 		</v-card-actions>
 	</v-form>

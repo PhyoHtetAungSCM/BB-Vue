@@ -11,6 +11,10 @@
   margin-right: 10px;
 }
 
-.font-bold {
-  font-weight: bold;
+.upload-error {
+  background-color: red;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 23px;
 }

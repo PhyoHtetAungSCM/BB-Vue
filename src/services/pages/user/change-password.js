@@ -2,7 +2,6 @@ export default {
 	data() {
 		return {
       password: {
-        userID: this.$store.state.authID,
         old_password: "",
         new_password: "",
         password_confirmation: "",
@@ -20,11 +19,11 @@ export default {
                   this.$router.push({ name: "user-list" });
                 })
                 .catch(err => {
-                  console.log(err.response);
                   this.error = err.response.data.errors;
                   if(err.response.data.message) {
                     this.err_msg = err.response.data.message;
                   }
+                  console.log(err);
                 });
       },
       removeUserInputs() {

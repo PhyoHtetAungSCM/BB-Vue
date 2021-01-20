@@ -11,6 +11,10 @@
   margin: 0px 7px 7px 7px;
 }
 
+.action-btn {
+  margin-right: 10px;
+}
+
 .error-box {
   border-color: red;
 }

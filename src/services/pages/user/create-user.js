@@ -10,10 +10,10 @@ export default {
 				email: "",
 				password: "",
 				password_confirmation: "",
-				type: "",
+				type: 1,
 				profile: '',
 			},
-			selectedType: null,
+			selectedType: 1,
 			previewProfile: "",
 			error: "",
 		};
@@ -46,12 +46,12 @@ export default {
 				});
 		},
 		removeUserInputs() {
-			this.name = "",
-      this.email = "",
-			this.password = "",
-			this.password_confirmation = "",
-			this.type = "",
-			this.profile = ""
+			this.userInfo.name = "",
+      this.userInfo.email = "",
+			this.userInfo.password = "",
+			this.userInfo.password_confirmation = "",
+			this.previewProfile = "",
+			document.getElementById('file').value = ""
 		}
   }
 };

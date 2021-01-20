@@ -44,5 +44,11 @@ export default {
 				console.log(err);
 			});
 		},
+		removeUserInputs() {
+			this.userInfo.name = "",
+      this.userInfo.email = "",
+			this.previewProfile = "",
+			document.getElementById('file').value = ""
+		}
 	}
 };

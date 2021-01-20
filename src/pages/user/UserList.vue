@@ -1,9 +1,9 @@
 <template>
 <v-card>
-    <v-card-title>
-        User list
-        <v-spacer></v-spacer>
-        <v-form ref="form">
+	<v-card-title>
+		User list
+		<v-spacer></v-spacer>
+		<v-form ref="form">
 			<v-row class="filter-bar">
 				<v-col md="2.5">
 					<v-text-field label="Search keyword" hide-details="auto" v-model='keyword'></v-text-field>
@@ -12,11 +12,11 @@
 				<v-btn class="user-list-btn mr-4" color="primary" @click="$router.push({ name: 'create-user' })">Create</v-btn>
 			</v-row>
 		</v-form>
-    </v-card-title>
-    <v-container>
-        <v-data-table :headers="headers" :items="showList">
-            <template v-slot:[`item.name`]="{ item }">
-                <v-dialog transition="dialog-top-transition" max-width="500">
+	</v-card-title>
+	<v-container>
+		<v-data-table :headers="headers" :items="showList">
+			<template v-slot:[`item.name`]="{ item }">
+				<v-dialog transition="dialog-top-transition" max-width="500">
 					<template v-slot:activator="{ on, attrs }">
 						<a color="primary" 
 						v-if="item.name" 
@@ -30,7 +30,7 @@
 						<v-card>
 							<v-toolbar color="primary" dark>User Detail</v-toolbar>
 							<v-container>
-                                <img :src="userDetail.profile_path" style="width: 100px; height: 100px;">
+								<img :src="userDetail.profile_path" width="100" height="100">
 								<v-row>
 									<v-col cols="12" sm="6" md="4">
 										<label class="font-bold">Name:</label>
@@ -66,18 +66,18 @@
 						</v-card>
 					</template>
 				</v-dialog>
-            </template>
-            <template v-slot:[`item.operation`] = "{ item }">
-                <v-row>
-                    <template v-if="userType == 0">
-                        <div class="operation-btn">
-                            <v-btn color="error" class="user-list-btn" @click="deleteUser(item.id)">Delete</v-btn>
-                        </div>
-                    </template>
-                </v-row>
-            </template>
-        </v-data-table>
-    </v-container>
+			</template>
+			<template v-slot:[`item.operation`] = "{ item }">
+				<v-row>
+					<template v-if="userType == 0">
+						<div class="operation-btn">
+							<v-btn color="error" class="user-list-btn" @click="deleteUser(item.id)">Delete</v-btn>
+						</div>
+					</template>
+				</v-row>
+			</template>
+		</v-data-table>
+	</v-container>
 </v-card>
 </template>
 

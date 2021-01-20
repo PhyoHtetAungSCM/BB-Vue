@@ -71,17 +71,17 @@ export default {
 			});
 		},
 		deleteUser(id) {
-			this.$store
-				.dispatch("deleteUser", {
-					userID: id
-				})
-				.then(() => {
-					this.error = "";
-				})
-				.catch(err => {
-					this.error = err.response.data.errors;
-					console.log(err);
-				});
+			if(confirm("Do you really want to delete?")){
+				this.$store
+					.dispatch("deleteUser", id)
+					.then(() => {
+						this.error = "";
+					})
+					.catch(err => {
+						this.error = err.response.data.errors;
+						console.log(err);
+					});
+			}
 		},
 	}
 };

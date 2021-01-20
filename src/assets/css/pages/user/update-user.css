@@ -27,6 +27,23 @@
   height: 100%;
 }
 
+.profile-wrap {
+  flex: 1;
+  margin-left: 5px;
+}
+
+.profile-label {
+  padding-bottom: 15px;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.action-btn {
+  margin-right: 10px;
+}
+
 .error-box {
   border-color: red;
 }

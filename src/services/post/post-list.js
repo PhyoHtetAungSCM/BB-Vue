@@ -1,4 +1,5 @@
 import { mapGetters } from "vuex";
+import XLSX from 'xlsx';
 
 export default {
 	data() {
@@ -32,7 +33,6 @@ export default {
 			],
 			showList: [],
 			postDetail: [],
-			userType: this.$store.state.authType
 		};
 	},
     mounted() {
@@ -44,7 +44,7 @@ export default {
 				});
     },
     computed: {
-			...mapGetters(["isLoggedIn", "userId"]),
+			...mapGetters(["isLoggedIn", "userId", "userType"]),
 			headers() {
 				if (!this.isLoggedIn) {
 					return this.headerList.slice(0, this.headerList.length - 1);
@@ -72,15 +72,23 @@ export default {
 				});
 			},
 			deletePost(id) {
-				this.$store
-					.dispatch("deletePost", id)
-					.then(() => {
-						this.error = "";
-					})
-					.catch(err => {
-						this.error = err.response.data.errors;
-						console.log(err);
-					});
+				if(confirm("Do you really want to delete?")){
+					this.$store
+						.dispatch("deletePost", id)
+						.then(() => {
+							this.error = "";
+						})
+						.catch(err => {
+							this.error = err.response.data.errors;
+							console.log(err);
+						});
+				}
 			},
+			download() {
+        const data = XLSX.utils.json_to_sheet(this.showList)
+        const wb = XLSX.utils.book_new()
+        XLSX.utils.book_append_sheet(wb, data, 'Post List')
+        XLSX.writeFile(wb,'SCM BulletinBoard.xlsx')
+      }
     }
 };

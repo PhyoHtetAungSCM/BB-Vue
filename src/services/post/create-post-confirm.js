@@ -7,9 +7,7 @@ export default {
 	methods: {
 		createPost() {
 			this.$store
-				.dispatch("createPost", {
-					...this.$store.state.postList
-				})
+				.dispatch("createPost", this.$store.state.postList)
 				.then(() => {
 					this.error = "";
 					this.$router.push({ name: "post-list" });

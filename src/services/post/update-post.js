@@ -16,6 +16,7 @@ export default {
 			this.postInfo = updatePost[0];
 			this.postInfo.profile = null;
 		}
+		console.log(this.postInfo);
 	},
 	methods: {
 		updatePostConfirm() {
@@ -29,6 +30,13 @@ export default {
 					this.error = err.response.data.errors;
 					console.log(err);
 				});
+		},
+		changeStatus() {
+			if(this.postInfo.status) {
+				this.postInfo.status = 1;
+			} else {
+				this.postInfo.status = 0;
+			}
 		},
 		removePostInputs() {
 			this.postInfo.title = "",

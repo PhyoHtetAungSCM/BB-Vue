@@ -7,10 +7,7 @@ export default {
   methods: {
     updatePost() {
       this.$store
-        .dispatch("updatePost", {
-          id: this.$route.params.id,
-          ...this.$store.state.postList
-        })
+        .dispatch("updatePost", this.$store.state.postList)
         .then(() => {
           this.error = "";
           this.$router.push({ name: "post-list" });

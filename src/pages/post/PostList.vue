@@ -10,8 +10,10 @@
 				</v-col>
 				<v-btn class="post-list-btn mr-4" color="primary" @click="filterPosts">Filter</v-btn>
 				<v-btn class="post-list-btn mr-4" color="primary" @click="$router.push({ name: 'create-post' })">Create</v-btn>
-				<v-btn class="post-list-btn mr-4" color="primary">Upload</v-btn>
-				<v-btn class="post-list-btn mr-4" color="primary">Download</v-btn>
+				<v-btn class="post-list-btn mr-4" color="primary" @click="$router.push({ name: 'post-upload' })">Upload</v-btn>
+						<v-btn class="post-list-btn mr-4" color="primary" @click="download()">
+							Download
+						</v-btn	>
 			</v-row>
 		</v-form>
 	</v-card-title>
@@ -46,6 +48,14 @@
 									</v-col>
 									<v-col cols="12" sm="6" md="8">
 										<span>{{ postDetail.description }}</span>
+									</v-col>
+								</v-row>
+								<v-row>
+									<v-col cols="12" sm="6" md="4">
+										<label class="font-bold">Status:</label>
+									</v-col>
+									<v-col cols="12" sm="6" md="8">
+										<span>{{ postDetail.status == 1 ? "Active" : "Inactive" }}</span>
 									</v-col>
 								</v-row>
 								<v-row>

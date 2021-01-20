@@ -7,6 +7,10 @@
   margin: 0px 7px 7px 7px;
 }
 
+.action-btn {
+  margin-right: 10px;
+}
+
 .font-bold {
   font-weight: bold;
 }

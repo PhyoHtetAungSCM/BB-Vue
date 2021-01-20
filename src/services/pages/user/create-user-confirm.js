@@ -6,7 +6,6 @@ export default {
   },
   methods: {
     createUser() {
-      this.$store.state.userList['authID'] = this.$store.state.authID;
       this.$store
 				.dispatch("createUser", this.$store.state.userList)
 				.then(() => {

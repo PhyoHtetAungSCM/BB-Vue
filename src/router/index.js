@@ -15,6 +15,7 @@ import ChangePassword from "../pages/user/ChangePassword";
 
 /** Post Import */
 import PostList from "../pages/post/PostList";
+import PostUpload from "../pages/post/PostUpload";
 import CreatePost from "../pages/post/CreatePost";
 import CreatePostConfirm from "../pages/post/CreatePostConfirm";
 import UpdatePost from "../pages/post/UpdatePost";
@@ -81,6 +82,11 @@ const routes = [
         path: "/post/list",
         name: "post-list",
         component: PostList,
+    },
+    {
+        path: "/post/upload",
+        name: "post-upload",
+        component: PostUpload,
     },
     {
         path: "/post/create",

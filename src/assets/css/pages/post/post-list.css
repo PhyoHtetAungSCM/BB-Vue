@@ -17,3 +17,7 @@
 .detail-row {
   height: 30px;
 }
+
+.font-bold {
+  font-weight: bold;
+}
