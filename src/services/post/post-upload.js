@@ -23,5 +23,8 @@ export default {
         console.log('check error: ', this.error)
       });
     },
+    removePostInput() {
+			document.getElementById('file').value = ""
+		}
   }
 }

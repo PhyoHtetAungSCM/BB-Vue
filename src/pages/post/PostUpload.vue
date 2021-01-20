@@ -10,14 +10,14 @@
             <div style="padding-bottom: 15px;">
               <label style="font-weight: bold">Choose your import file</label>
             </div>
-            <input type="file" name="uploadFile" ref="csvFile"  @change="onFileChange" accept=".csv" />
+            <input type="file" id="file" name="uploadFile" ref="csvFile"  @change="onFileChange" accept=".csv" />
           </div>
         </v-card-text>
         <v-card-actions>
             <div class="post-create-action">
                 <v-spacer></v-spacer>
                 <v-btn type="submit" color="primary" class="action-btn" @click="upload">Upload</v-btn>
-                <v-btn color="primary" class="action-btn">Clear</v-btn>
+                <v-btn color="primary" class="action-btn" @click="removePostInput">Clear</v-btn>
             </div>
         </v-card-actions>
     </v-container>
