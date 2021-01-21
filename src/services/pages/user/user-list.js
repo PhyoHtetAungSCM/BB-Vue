@@ -31,7 +31,7 @@ export default {
 			],
 			showList: [],
 			userDetail: [],
-			userType: this.$store.state.authType
+			userType: this.$store.state.user.data.type,
 		};
 	},
 	mounted() {

@@ -5,7 +5,7 @@ export default {
     data() {
         return {
             title: constants.APP_TITLE,
-            userType: this.$store.state.authType
+            userType: this.$store.state.user.data.type,
         };
     },
     computed: {

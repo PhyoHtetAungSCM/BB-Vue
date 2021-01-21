@@ -48,7 +48,7 @@ const routes = [
         beforeEnter: (to, from, next) => {
             const userType = store.state.authType;
             if (userType != 0) {
-                return next("/post/list");
+                return next({name: from.name});
             }
             next();
         }

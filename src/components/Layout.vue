@@ -8,9 +8,7 @@
 									<span @click="$router.push({ name: 'post-list' })" style="padding: 0 15px;">{{ title }}</span>
 							</v-toolbar-title>
 							<div class="route-links">
-								<template v-if="userType == 0">
-									<span @click="$router.push({ name: 'user-list' })" style="padding: 0 15px; cursor: pointer">Users</span>
-								</template>
+								<span @click="$router.push({ name: 'user-list' })" style="padding: 0 15px; cursor: pointer">Users</span>
 								<span @click="$router.push({ name: 'post-list' })" style="padding: 0 15px; cursor: pointer">Posts</span>
 							</div>
 							<v-spacer></v-spacer>

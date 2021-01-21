@@ -9,8 +9,6 @@ axios.defaults.baseURL = process.env.VUE_APP_SERVER;
 
 export default new Vuex.Store({
 	state: {
-		authID: '',
-		authType: '',
 		confirmProfile: '',
 		user: null,
 		userList: [],
@@ -119,11 +117,6 @@ export default new Vuex.Store({
 		userName: (state) => {
 			if (state.user && state.user.data.name) {
 				return state.user.data.name;
-			}
-		},
-		userType: (state) => {
-			if (state.user && state.user.data.type) {
-				return state.user.data.type;
 			}
 		},
 		userList: (state) => {
