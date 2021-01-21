@@ -9,6 +9,7 @@ axios.defaults.baseURL = process.env.VUE_APP_SERVER;
 
 export default new Vuex.Store({
 	state: {
+		authID: '',
 		authType: '',
 		confirmProfile: '',
 		user: null,

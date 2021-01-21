@@ -9,11 +9,11 @@
 					<v-text-field label="Search keyword" hide-details="auto" v-model='keyword'></v-text-field>
 				</v-col>
 				<v-btn class="post-list-btn mr-4" color="primary" @click="filterPosts">Filter</v-btn>
-				<v-btn class="post-list-btn mr-4" color="primary" @click="$router.push({ name: 'create-post' })">Create</v-btn>
-				<v-btn class="post-list-btn mr-4" color="primary" @click="$router.push({ name: 'post-upload' })">Upload</v-btn>
-						<v-btn class="post-list-btn mr-4" color="primary" @click="download()">
-							Download
-						</v-btn	>
+				<template v-if="userId">
+					<v-btn class="post-list-btn mr-4" color="primary" @click="$router.push({ name: 'create-post' })">Create</v-btn>
+					<v-btn class="post-list-btn mr-4" color="primary" @click="$router.push({ name: 'post-upload' })">Upload</v-btn>
+					<v-btn class="post-list-btn mr-4" color="primary" @click="download()">Download</v-btn	>
+				</template>
 			</v-row>
 		</v-form>
 	</v-card-title>

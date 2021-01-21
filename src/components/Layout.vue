@@ -7,10 +7,12 @@
 							<v-toolbar-title class="title">
 									<span @click="$router.push({ name: 'post-list' })" style="padding: 0 15px;">{{ title }}</span>
 							</v-toolbar-title>
+							<template v-if="userId">
 							<div class="route-links">
 									<span @click="$router.push({ name: 'user-list' })" style="padding: 0 15px; cursor: pointer">Users</span>
 									<span @click="$router.push({ name: 'post-list' })" style="padding: 0 15px; cursor: pointer">Posts</span>
 							</div>
+							</template>
 							<v-spacer></v-spacer>
 							<div class="route-links">
 								<v-menu offset-y v-if="isLoggedIn">

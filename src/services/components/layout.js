@@ -8,7 +8,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(["isLoggedIn", "userType", "userName"]),
+        ...mapGetters(["isLoggedIn", "userType", "userName", "userId"]),
     },
     methods: {
         /**
@@ -20,7 +20,7 @@ export default {
                 .dispatch("logout")
                 .then(() => {
                     this.error = "",
-                    this.$router.push({ name: "login" });
+                    this.$router.push({ name: "post-list" });
                 })
                 .catch((err) => {
                     console.log(err);
