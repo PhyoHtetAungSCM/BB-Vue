@@ -6,7 +6,6 @@ export default {
 				{ value: 1, text: "User" }
 			],
 			userInfo: this.$store.state.userList,
-			selectedType: "",
 			previewProfile: "",
 			error: "",
 		};
@@ -14,7 +13,6 @@ export default {
 	mounted() {
 		/** Empty createObjectURL */
 		this.$store.state.confirmProfile = '';
-		this.selectedType = this.userInfo.type;
 		this.userInfo.profile = null;
 	},
 	methods: {

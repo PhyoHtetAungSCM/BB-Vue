@@ -5,10 +5,11 @@ export default {
     data() {
         return {
             title: constants.APP_TITLE,
+            userType: this.$store.state.authType
         };
     },
     computed: {
-        ...mapGetters(["isLoggedIn", "userType", "userName", "userId"]),
+        ...mapGetters(["isLoggedIn", "userName"]),
     },
     methods: {
         /**
@@ -20,7 +21,7 @@ export default {
                 .dispatch("logout")
                 .then(() => {
                     this.error = "",
-                    this.$router.push({ name: "post-list" });
+                    this.$router.push({ name: "login" });
                 })
                 .catch((err) => {
                     console.log(err);

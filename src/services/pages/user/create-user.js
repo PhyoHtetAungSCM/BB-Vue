@@ -13,7 +13,6 @@ export default {
 				type: 1,
 				profile: '',
 			},
-			selectedType: 1,
 			previewProfile: "",
 			error: "",
 		};

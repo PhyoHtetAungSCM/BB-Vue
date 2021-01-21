@@ -22,7 +22,7 @@
       </div>
       <v-select 
         label="Type"
-        :value="selectedType" 
+        :value="userInfo.type" 
         :items="types"
         @input="setSelected"
       ></v-select>

@@ -45,6 +45,13 @@ const routes = [
         path: "/user/list",
         name: "user-list",
         component: UserList,
+        beforeEnter: (to, from, next) => {
+            const userType = store.state.authType;
+            if (userType != 0) {
+                return next("/post/list");
+            }
+            next();
+        }
     },
     {
         path: "/user/create",

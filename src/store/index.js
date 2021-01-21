@@ -20,8 +20,8 @@ export default new Vuex.Store({
 		setUserData(state, data) {
 			state.user = data;
 		},
-		setUserName(state, name) {
-			state.user.data.name = name;
+		setUserProfile(state, data) {
+			state.user.data = data;
 		},
 		setUserList(state, data) {
 			state.userList = data
@@ -70,9 +70,10 @@ export default new Vuex.Store({
 			});
 		},
 		updateUser({ commit }, context) {
+			console.log(context);
 			return axios.post("/user/update", context).then(({ data }) => {
-				commit("setUserList", data);
-				commit("setUserName", context.name);
+				commit('setUserList', data);
+				commit("setUserProfile", context);
 			});
 		},
 		deleteUser({ commit }, id) {

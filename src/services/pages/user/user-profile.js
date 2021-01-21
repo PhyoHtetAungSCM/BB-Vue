@@ -1,16 +1,12 @@
 export default {
 	data() {
 		return {
-			userProfile: []
+			userProfile: ''
 		};
 	},
 	mounted() {
-		this.$axios
-			.get("/user/profile/" + this.$store.state.authID)
-			.then(response => {
-				this.$store.commit('setUserList', response.data);
-				this.userProfile = this.$store.state.userList;
-			});
+		this.$store.state.userList = this.$store.state.user.data;
+		this.userProfile = this.$store.state.userList;
 	},
 	methods: {
 		getUpdateUser() {

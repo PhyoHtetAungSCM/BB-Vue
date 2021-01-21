@@ -69,11 +69,9 @@
 			</template>
 			<template v-slot:[`item.operation`] = "{ item }">
 				<v-row>
-					<template v-if="userType == 0">
-						<div class="operation-btn">
-							<v-btn color="error" class="user-list-btn" @click="deleteUser(item.id)">Delete</v-btn>
-						</div>
-					</template>
+					<div class="operation-btn">
+						<v-btn color="error" class="user-list-btn" @click="deleteUser(item.id)">Delete</v-btn>
+					</div>
 				</v-row>
 			</template>
 		</v-data-table>
