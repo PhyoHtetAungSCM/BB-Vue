@@ -46,7 +46,7 @@ const routes = [
         name: "user-list",
         component: UserList,
         beforeEnter: (to, from, next) => {
-            const userType = store.state.authType;
+            const userType = store.state.user.data.type;
             if (userType != 0) {
                 return next({name: from.name});
             }
