@@ -6,9 +6,9 @@
     <v-container>
         <v-card-text>
           <div v-if="error" class="upload-error"><span>{{error}}</span></div>
-          <div style="flex: 1; margin-left: 5px;">
-            <div style="padding-bottom: 15px;">
-              <label style="font-weight: bold">Choose your import file</label>
+          <div class="upload-excel-wrap">
+            <div class="upload-excel-container">
+              <label class="font-bold">Choose your import file</label>
             </div>
             <input type="file" id="file" name="uploadFile" ref="csvFile"  @change="onFileChange" accept=".csv" />
           </div>

@@ -11,6 +11,19 @@
   margin-right: 10px;
 }
 
+.upload-excel-wrap {
+  flex: 1;
+  margin-left: 5px;
+}
+
+.upload-excel-container {
+  padding-bottom: 15px;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
 .upload-error {
   background-color: red;
   color: white;
